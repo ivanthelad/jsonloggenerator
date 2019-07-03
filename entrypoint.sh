@@ -1,0 +1,1 @@
+while true;       do       awk -v RS= '{$1=$1}1' demo.json  >> /tmp/mylog.json;            i=$((i+1));        sleep 1; done ;
