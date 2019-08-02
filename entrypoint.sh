@@ -4,7 +4,6 @@ while true;       do
 RANDOM=$$$(date +%s)
 cp demo.json temp.json
 ip=${ips[$RANDOM % ${#ips[@]}]}
-echo $ip
 sed -i "s/@ip@/$ip/g" temp.json
 RANDOM=$$$(date +%s)
 ip=${ips[$RANDOM % ${#ips[@]}]}
@@ -20,4 +19,4 @@ sed -i "s/@httpstatus@/$status/g" temp.json
 size=$(( ( RANDOM % 1000 )  + 1 ))
 sed -i "s/@response@/$size/g" temp.json
 
-awk -v RS= '{$1=$1}1' temp.json  >> /tmp/mylog.json;            i=$((i+1));        sleep 1; done ;
+awk -v RS= '{$1=$1}1' temp.json  >> /tmp/mylog.json;            i=$((i+1));     1>&2 echo $(cat temp.json)   sleep 1; done ;
